@@ -18,7 +18,9 @@ const userController = require("../controllers/userController")
     - At this point, you are logged in
 */
 
-router.get('/getAuthURL', oauthController.getAuthURL, (req, res) => {
+router.get('/getAuthURL', 
+  oauthController.getAuthURL, 
+  (req, res) => {
   return res.redirect(res.locals.url);
 });
 
@@ -30,7 +32,10 @@ router.get('/login/google',
   return res.redirect('http://localhost:8080/');
 });
 
-router.use('/logout', oauthController.removeCookie, (req, res) => {
+router.use('/logout', 
+  userController.logoutUser,
+  oauthController.removeCookie, 
+  (req, res) => {
   return res.redirect('/');
 });
 

@@ -47,4 +47,22 @@ queries.deleteTag = `
 DELETE FROM phototags
 WHERE userid = $1 AND photoid = $2 AND tagid = $3 `
 
+//USERS
+queries.createUser = `
+INSERT INTO users(userid, name, sessionid)
+VALUES($1, $2, $3)
+RETURNING name`
+
+queries.loginUser = `
+UPDATE users
+SET sessionid = $1
+WHERE userid = $2
+RETURNING name`
+
+queries.logoutUser = `
+UPDATE users
+SET sessionid = null
+WHERE userid = $1
+RETURNING name`
+
 module.exports = queries;

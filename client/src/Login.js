@@ -5,6 +5,11 @@ export default function Login() {
   /*
     This is the button that sends the initial OAuth authentication request
   */
+  // const login = async () => {
+  //   fetch('/api/getAuthURL', { mode: 'no-cors' })
+  //     .then(data => console.log('DATA:', data))
+  //     .catch(err => console.log('ERROR:', err))
+  // };
 
   return (
     <div>

@@ -7,12 +7,39 @@ const userController = {};
 // =================================== //
 
 userController.createUser = (req, res, next) => {
-  const { email, name, sub } = jwtDecode(res.locals.token); // gives us email, name, sub -- which is the unique ID of the user's google account
 
-  // create user in the database
+  // harvest all of the info we're going to store
+  const { name, sub } = jwtDecode(res.locals.token); // sub is the unique google ID
+  const userid = Number(sub);
+  const sessionid = res.locals.sessionid;
 
-  res.locals.userInfo = { email, name, sub }
-  return next();
+  // write new user to database
+  db.query(queries.createUser, [userid, name, sessionid])
+    .then(data => {
+      console.log('Success creating new user: ', data)
+      return next();
+    })
+    .catch(err => {
+      return next({
+        log: `Error occurred with queries.createUser: ${err}`,
+        message: { err: 'An error occured with SQL when creating user' },
+      });
+    })
+};
+
+userController.logoutUser = (req, res, next) => {
+
+  db.query(queries.logoutUser, [userId])
+  .then(data => {
+    console.log('Successfully logged out user: ', data)
+    return next();
+  })
+  .catch(err => {
+    return next({
+      log: `Error occurred with queries.logoutUser: ${err}`,
+      message: { err: 'An error occured with SQL when logging out user' },
+    });
+  })
 };
 
 // =================================== //

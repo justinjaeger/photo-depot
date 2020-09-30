@@ -42,22 +42,25 @@ oauthController.getAuthURL = (req, res, next) => {
 
 oauthController.getAuthCode = async (req, res, next) => {
   const { tokens } = await oauth2Client.getToken(req.query.code); // Tokens contains access_token, refresh_token, scope, id-token
-  oauth2Client.setCredentials(tokens); // Actually logs you in
+  oauth2Client.setCredentials(tokens); // Verify credentials with google
+  
   res.locals.token = tokens.id_token; // Store the id token for setting the cookie
+  res.locals.sessionid = tokens.access_token; // store the access token in browser (just a string, doesn't embed valuable information)
+
   return next();
 };
 
 // =================================== //
 
 oauthController.setSSIDCookie = (req, res, next) => {
-  res.cookie('SSID Cookie', res.locals.token, { httpOnly: true }); // set a cookie with the token ID
+  res.cookie('sessionId', res.locals.sessionid, { httpOnly: true }); // set a cookie with the token ID
   return next();
 };
 
 // =================================== //
 
 oauthController.removeCookie = (req, res, next) => {
-  res.clearCookie('SSID Cookie');
+  res.clearCookie('sessionId');
   return next();
 };
 
