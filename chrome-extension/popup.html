@@ -14,19 +14,23 @@
       <p id="image-id"></p>
     </div>
 
-    <div id="logged-in">
-      <a href="http://localhost:3000/chrome/logout">
+    <div>
+      <!-- <a href="http://localhost:3000/chrome/logout"> -->
         Click to Log Out
-        <!-- <button class="popup-button" onclick="logOut">Log Out</button> -->
-      </a>
+        <button id="log-out">Log Out</button>
+      <!-- </a> -->
     </div> <!-- Displays when you are logged IN -->
 
-    <div id="logged-out">
-      <a href="http://localhost:3000/chrome/login">
+    <div>
+      <!-- <a href="http://localhost:3000/chrome/login"> -->
         Click to Log in
-        <!-- <button class="popup-button" onclick="logIn">Log In</button> -->
-      </a>
+        <button id="log-in">Log In</button>
+      <!-- </a> -->
     </div> <!-- Displays when you are logged OUT -->
+
+    <div>
+      <button id="is-user-signed-in">Is user signed in?</button>
+    </div>
 
     <script type="text/javascript" src="./popup.js" ></script>
   </body>

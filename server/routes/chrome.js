@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const chromeController = require('../controllers/chromeController');
+const jwtDecode = require('jwt-decode');
+// const chromeController = require('../controllers/chromeController');
 
-router.get('/login', 
+router.get('/login/:token', 
   // chromeController.getImages, 
   (req, res) => {
-    console.log('fucl bitcj')
-    res.cookie('sessionid', '0000000012345'); 
-  return res.send('Hello everybody')
+  console.log('THIS IS FROM THE SERVER', req.params)
+  const decoded = jwtDecode(req.params.token)
+  return res.json(decoded)
   // return res.status(200).json(res.locals.data);
 })
 
