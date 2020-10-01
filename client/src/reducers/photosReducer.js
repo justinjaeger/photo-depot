@@ -1,9 +1,12 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  user: { logginIn: false },
+  user: {
+    logginIn: false
+  },
   photos: [],
   tags: [],
+  inputTag: '',
 };
 
 const photosReducer = (state = initialState, action) => {
@@ -12,21 +15,37 @@ const photosReducer = (state = initialState, action) => {
   let updatedPhotos;
   let tagsClone;
   let updatedTags;
+  let updatedTagName;
 
   switch (action.type) {
     case types.GET_PHOTOS:
       photos = action.payload;
 
-      return { ...state, photos };
+      return {
+        ...state, photos
+      };
+
+    case types.ADD_PHOTO:
+      photos = [...state.photos];
+      photos.push(action.payload);
+
+      return {
+        ...state, photos
+      };
 
     case types.DELETE_PHOTO:
       photosClone = JSON.parse(JSON.stringify(state.photos));
 
       updatedPhotos = photosClone.filter(
-        (photo) => photo.photoid !== action.payload
-      );
+        (photo) => {
+          console.log(photo.photoid, action.payload)
+          return photo.photoid !== action.payload
+        });
+      console.log('updated photos', updatedPhotos)
 
-      return { ...state, photos: updatedPhotos };
+      return {
+        ...state, photos: updatedPhotos
+      };
 
     case types.ADD_RATING:
       photosClone = JSON.parse(JSON.stringify(state.photos));
@@ -37,28 +56,47 @@ const photosReducer = (state = initialState, action) => {
         }
       });
 
-      return { ...state, photos: updatedPhotos };
+      return {
+        ...state, photos: updatedPhotos
+      };
 
     case types.GET_TAGS:
       updatedTags = action.payload;
 
-      return { ...state, tags: updatedTags };
+      return {
+        ...state, tags: updatedTags
+      };
 
-    case types.ADD_TAG:
-      photosClone = JSON.parse(JSON.stringify(state.photos));
+    case types.INPUT_TAG:
+      updatedTagName = action.payload;
+
+      return { ...state, inputTag: updatedTagName };
+
+    case types.ADD_TAG_TYPE:
+      // Note: Duplicate tags already handled by server on submit
+
       tagsClone = JSON.parse(JSON.stringify(state.tags));
+      tagsClone.push(action.payload);
 
-      updatedPhotos = photosClone.map((photo) => {
-        if (photo.photoid === action.payload.photoId) {
-          // Add new tag object to the given photo's tags array
-          photo.tags.push(action.payload.newTag);
-          // Add new tag object to available tags array
-          updatedTags = tagsClone.push(action.payload.newTag);
-        }
-      });
+      return { ...state, tags: tagsClone};
+
+    // case types.ADD_TAG:
+    //   photosClone = JSON.parse(JSON.stringify(state.photos));
+    //   tagsClone = JSON.parse(JSON.stringify(state.tags));
+
+    //   updatedPhotos = photosClone.map((photo) => {
+    //     if (photo.photoid === action.payload.photoId) {
+    //       // Add new tag object to the given photo's tags array
+    //       photo.tags.push(action.payload.newTag);
+    //       // Add new tag object to available tags array
+    //       updatedTags = tagsClone.push(action.payload.newTag);
+    //     }
+    //   });
 
       // COME BACK AND CHECK FOR DUPLICATES
-      return { ...state, photos: updatedPhotos, tags: updatedTags };
+      return {
+        ...state, photos: updatedPhotos, tags: updatedTags
+      };
 
     case types.REMOVE_TAG:
       photosClone = JSON.parse(JSON.stringify(state.photos));
@@ -78,7 +116,9 @@ const photosReducer = (state = initialState, action) => {
       });
 
       // COME BACK AND CHECK FOR DUPLICATES
-      return { ...state, photos: updatedPhotos, tags: updatedTags };
+      return {
+        ...state, photos: updatedPhotos, tags: updatedTags
+      };
 
     default:
       return state;
