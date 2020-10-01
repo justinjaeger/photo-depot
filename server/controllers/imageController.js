@@ -6,8 +6,7 @@ const imageController = {};
 //GETS ALL USERS IMAGES FROM THE DATABASE
 imageController.getImages = (req, res, next) => {
 
-  //hard-code userid until sessions set up
-  const userid = 1;
+  const userid = res.locals.userId;
 
   db.query(queries.getImages, [userid])
     .then(photos => {
@@ -44,8 +43,7 @@ imageController.addImage = (req, res, next) => {
     url
   } = req.body;
 
-  //dummy id until cookies are set up
-  const userid = 1;
+  const userid = res.locals.userId;
 
   // define new date/time
   const now = new Date();

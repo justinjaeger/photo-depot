@@ -1,15 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-export default function Login() {
-
-  /*
-    This is the button that sends the initial OAuth authentication request
-  */
-  // const login = async () => {
-  //   fetch('/api/getAuthURL', { mode: 'no-cors' })
-  //     .then(data => console.log('DATA:', data))
-  //     .catch(err => console.log('ERROR:', err))
-  // };
+export default function Login(props) {
 
   return (
     <div>

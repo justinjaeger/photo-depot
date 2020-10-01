@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const imageController = require('../controllers/imageController')
+const imageController = require('../controllers/imageController');
+const cookieController = require('../controllers/cookieController');
 
 router.get('/', imageController.getImages, (req, res) => {
   return res.status(200).json(res.locals.data);

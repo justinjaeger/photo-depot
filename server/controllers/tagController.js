@@ -6,8 +6,7 @@ const tagController = {};
 //SENDS LIST OF TAGS BACK TO CLIENT
 tagController.getTags = (req, res, next) => {
 
-  //dummy id until cookies are set up
-  const userid = 1;
+  const userid = res.locals.userId;
 
   db.query(queries.getTags, [userid])
     .then(tags => {
@@ -32,8 +31,7 @@ tagController.addTag = (req, res, next) => {
     tag
   } = req.body;
 
-  //dummy id until cookies are set up
-  const userid = 1;
+  const userid = res.locals.userId;
 
   db.query(queries.addTag, [tag, userid])
     .then(data => {
@@ -54,7 +52,7 @@ tagController.addTag = (req, res, next) => {
 tagController.updateTag = (req, res, next) => {
 
   //dummy id until cookies are set up
-  const userid = 1;
+  const userid = res.locals.userId;
 
   //deconstruct tagid from params
   const {
@@ -83,8 +81,7 @@ tagController.updateTag = (req, res, next) => {
 //REMOVES A TAG FROM THE GIVEN PHOTOID
 tagController.deleteTag = (req, res, next) => {
 
-  //dummy id until cookies are set up
-  const userid = 1;
+  const userid = res.locals.userId;;
 
   //deconstruct tagid from params
   const {

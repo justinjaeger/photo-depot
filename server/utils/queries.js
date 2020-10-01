@@ -49,20 +49,14 @@ WHERE userid = $1 AND photoid = $2 AND tagid = $3 `
 
 //USERS
 queries.createUser = `
-INSERT INTO users(userid, name, sessionid)
-VALUES($1, $2, $3)
-RETURNING name`
+INSERT INTO users(userid, name)
+VALUES($1, $2)
+`
 
-queries.loginUser = `
-UPDATE users
-SET sessionid = $1
-WHERE userid = $2
-RETURNING name`
-
-queries.logoutUser = `
-UPDATE users
-SET sessionid = null
-WHERE userid = $1
-RETURNING name`
+queries.getUserByUserid = `
+SELECT *
+FROM users
+WHERE userid=$1
+`
 
 module.exports = queries;

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const oauthController = require("../controllers/oauthController");
-const userController = require("../controllers/userController")
+const userController = require("../controllers/userController");
+const cookieController = require("../controllers/cookieController");
 
 /*
   Request comes from Login container
@@ -18,23 +19,33 @@ const userController = require("../controllers/userController")
     - At this point, you are logged in
 */
 
-router.get('/getAuthURL', 
+router.get('/getAuthURL',
   oauthController.getAuthURL, 
   (req, res) => {
   return res.redirect(res.locals.url);
 });
 
+// automatically goes here after you log into google
 router.get('/login/google', 
   oauthController.getAuthCode, // get access token
-  oauthController.setSSIDCookie, // set a cookie in browser
+  cookieController.setSSIDCookie, // set a cookie in browser
+  userController.doesUserExist, // do they already exist in db
   userController.createUser, // create a user with this information
   (req, res) => {
   return res.redirect('http://localhost:8080/');
 });
 
+// This route isn't from a button, it automatically checks these things
+router.get('/login',
+  cookieController.doesCookieExist,
+  userController.isCookieValidUser,
+  (req, res) => {
+  return res.json(false);
+})
+
 router.use('/logout', 
-  userController.logoutUser,
-  oauthController.removeCookie, 
+  // userController.logoutUser,
+  cookieController.removeCookie, 
   (req, res) => {
   return res.redirect('/');
 });

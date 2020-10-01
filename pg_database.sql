@@ -10,8 +10,8 @@ CASCADE;
 CREATE TABLE users
 (
   "userid" serial PRIMARY KEY,
-  "name" varchar NOT NULL CHECK ( name <> ''),
-  "sessionid" varchar NOT NULL,
+  "googleid" varchar NOT NULL,
+  "name" varchar NOT NULL CHECK ( name <> '')
 );
 
 SELECT setval('users_userid_seq', 1, false);

@@ -6,9 +6,10 @@ const PORT = process.env.PORT || 3000;
 
 const path = require('path');
 
-const imageRouter = require("./routes/images")
-const tagRouter = require("./routes/tags")
-const apiRouter = require("./routes/api")
+const userController = require("./controllers/userController")
+const imageRouter = require("./routes/images");
+const tagRouter = require("./routes/tags");
+const apiRouter = require("./routes/api");
 
 // JSON parser:
 app.use(express.json());
@@ -25,16 +26,21 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
   app.get('/', (req, res) => {
     return res.status(200).sendFile(path.resolve(process.cwd(), './client/src/index.html'));
   });
-}
+};
+
+/*
+  The userController.getUser middleware passes the userId 
+  from the cookie into res.locals.userId
+*/
 
 // IMAGES ROUTER
-app.use('/images', imageRouter);
-
-// // TAGS ROUTER
-app.use('/tags', tagRouter);
+app.use('/images', userController.getUser, imageRouter);
 
 // API ROUTER
 app.use('/api', apiRouter);
+
+// TAGS ROUTER
+app.use('/tags', userController.getUser, tagRouter);
 
 // catch-all endpoint handler
 app.use((req, res) => {

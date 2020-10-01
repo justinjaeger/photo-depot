@@ -8,13 +8,13 @@ const userController = {};
 
 userController.createUser = (req, res, next) => {
 
+  console.log('CREATING USER!!!!!!!')
+
   // harvest all of the info we're going to store
   const { name, sub } = jwtDecode(res.locals.token); // sub is the unique google ID
-  const userid = Number(sub);
-  const sessionid = res.locals.sessionid;
 
   // write new user to database
-  db.query(queries.createUser, [userid, name, sessionid])
+  db.query(queries.createUser, [sub, name])
     .then(data => {
       console.log('Success creating new user: ', data)
       return next();
@@ -27,19 +27,60 @@ userController.createUser = (req, res, next) => {
     })
 };
 
-userController.logoutUser = (req, res, next) => {
+// =================================== //
 
-  db.query(queries.logoutUser, [userId])
-  .then(data => {
-    console.log('Successfully logged out user: ', data)
-    return next();
-  })
-  .catch(err => {
-    return next({
-      log: `Error occurred with queries.logoutUser: ${err}`,
-      message: { err: 'An error occured with SQL when logging out user' },
-    });
-  })
+// if user DOES NOT exist, then we move on
+userController.isCookieValidUser = (req, res, next) => {
+
+  const { sub } = jwtDecode(res.locals.token);
+
+  db.query(queries.validateUser, [sub])
+    .then(data => {
+      console.log('Data from validation: ', data)
+      return res.send(true);
+    })
+    .catch(err => { // means the user doesn't exist
+      console.log('User does not exist ', err)
+      return next();
+    })
+};
+
+// =================================== //
+
+userController.doesUserExist = (req, res, next) => {
+
+  const { sub } = jwtDecode(res.locals.token);
+
+  db.query(queries.getUserByUserid, [sub])
+    .then(data => {
+      if (data.rows[0]) {
+        return res.redirect('http://localhost:8080/'); // if they exist then you go right to home page
+      } else {
+        return next();
+      }
+    })
+    .catch(err => { // if they don't exist move on and create them
+      console.log('Error seeing if user exists in userController.doesUserExist')
+      return next(err);
+    })
+};
+
+// =================================== //
+
+userController.getUser = (req, res, next) => {
+
+  const { sub } = jwtDecode(req.cookies.sessionid);
+
+  db.query(queries.getUserByUserid, [sub])
+    .then(data => {
+      console.log('LOGGING THE USER if they exist', data.rows[0])
+      res.locals.userId = data.rows[0].userid; // save the userId in data
+      return next(); // keep going
+    })
+    .catch(err => {
+      console.log(err, 'Cannot find User in getUser...')
+      return next(err);
+    })
 };
 
 // =================================== //

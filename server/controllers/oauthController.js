@@ -45,7 +45,7 @@ oauthController.getAuthCode = async (req, res, next) => {
   oauth2Client.setCredentials(tokens); // Verify credentials with google
   
   res.locals.token = tokens.id_token; // Store the id token for setting the cookie
-  res.locals.sessionid = tokens.access_token; // store the access token in browser (just a string, doesn't embed valuable information)
+  res.locals.sessionid = tokens.id_token; // store the access token in browser (just a string, doesn't embed valuable information)
 
   return next();
 };
