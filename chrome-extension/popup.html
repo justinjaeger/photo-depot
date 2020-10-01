@@ -13,6 +13,19 @@
       <h2>Image ID:</h2>
       <p id="image-id"></p>
     </div>
+
+    <div id="logged-in">
+      <a href="/api/logout">
+        <button class="popup-button" onclick="logOut">Log Out</button>
+      </a>
+    </div> <!-- Displays when you are logged IN -->
+
+    <div id="logged-out">
+      <a href="/api/getAuthURL">
+        <button class="popup-button" onclick="logIn">Log In</button>
+      </a>
+    </div> <!-- Displays when you are logged OUT -->
+
     <script type="text/javascript" src="./popup.js" ></script>
   </body>
 </html>

@@ -1,4 +1,8 @@
-// Event listener to handle incoming message from context menu.  This contains the image url.
+/* 
+  Event listener to handle incoming message from context menu.  This contains the image url.
+  Listens for when you right click an image
+*/
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
       if (request.msg === "imageUrl_sent") {
@@ -12,3 +16,17 @@ chrome.runtime.onMessage.addListener(
       }
   }
 );
+
+// ============================= //
+
+/*
+  Display login
+*/
+
+function logIn() {
+  console.log('Log in!!!!!')
+};
+
+function logOut() {
+  console.log('Log OUT!!!!!')
+};
