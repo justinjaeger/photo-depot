@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
-import Login from './Login';
-=======
->>>>>>> master
+import Login from './components/Login';
 import Header from './containers/Header.jsx';
 import SearchBar from './containers/SearchBar.jsx';
 import SideBar from './containers/SideBar.jsx';
@@ -35,13 +32,10 @@ function App() {
     
   return (
     <div id='App'>
-<<<<<<< HEAD
       {!isLoggedIn &&
       <Login />
       }
       {isLoggedIn && 
-=======
->>>>>>> master
       <Container fluid>
         <a href="/api/logout">
           <button onClick={logOut}>Log Out</button>

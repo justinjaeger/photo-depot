@@ -9,16 +9,10 @@ CASCADE;
 
 CREATE TABLE users
 (
-<<<<<<< HEAD
-  "userid" serial PRIMARY KEY,
-  "googleid" varchar NOT NULL,
-  "name" varchar NOT NULL CHECK ( name <> '')
-=======
   "id" serial PRIMARY KEY,
   "userid" varchar NOT NULL,
   "name" varchar NOT NULL CHECK ( name <> ''),
   UNIQUE ( userid )
->>>>>>> master
 );
 
 SELECT setval('users_id_seq', 1, false);

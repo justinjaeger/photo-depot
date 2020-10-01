@@ -5,13 +5,8 @@ const imageController = {};
 
 //GETS ALL USERS IMAGES FROM THE DATABASE
 imageController.getImages = (req, res, next) => {
-<<<<<<< HEAD
 
   const userid = res.locals.userId;
-=======
-  //hard-code userid until sessions set up
-  const userid = 1;
->>>>>>> master
 
   db.query(queries.getImages, [userid])
     .then(photos => {

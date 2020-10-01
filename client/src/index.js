@@ -10,16 +10,11 @@ import {
 } from 'react-redux';
 import store from './store';
 
-render( <
-  React.StrictMode >
-  <
-  Provider store = {
-    store
-  } >
-  <
-  App / >
-  <
-  /Provider> < /
-  React.StrictMode > ,
+render( 
+  <React.StrictMode >
+    < Provider store = { store } >
+      < App />
+    </Provider> 
+  </React.StrictMode>,
   document.getElementById('root')
 );

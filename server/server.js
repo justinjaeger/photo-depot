@@ -6,18 +6,13 @@ const PORT = process.env.PORT || 3000;
 
 const path = require('path');
 
-<<<<<<< HEAD
-const userController = require("./controllers/userController")
-const imageRouter = require("./routes/images");
-const tagRouter = require("./routes/tags");
-const apiRouter = require("./routes/api");
-=======
 const wsServer = require("./wsServer")
+
+const userController = require("./controllers/userController")
 
 const imageRouter = require("./routes/images")
 const tagRouter = require("./routes/tags")
 const apiRouter = require("./routes/api")
->>>>>>> master
 
 // JSON parser:
 app.use(express.json());
