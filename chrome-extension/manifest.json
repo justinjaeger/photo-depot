@@ -23,10 +23,14 @@
     }
   },
   "background": {
-    "scripts": ["eventPage.js"],
+    "scripts": [
+      "eventPage.js",
+      "./jsrsasign-all-min.js"
+    ],
     "persistent": false
   },
   "permissions": [
+    "identity",
     "contextMenus"
   ]
 }
