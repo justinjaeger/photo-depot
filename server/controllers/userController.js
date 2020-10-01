@@ -54,7 +54,7 @@ userController.doesUserExist = (req, res, next) => {
   db.query(queries.getUserByUserid, [sub])
     .then(data => {
       if (data.rows[0]) {
-        return res.redirect('http://localhost:8080/'); // if they exist then you go right to home page
+        return res.redirect('http://localhost:3000/'); // if they exist then you go right to home page
       } else {
         return next();
       }

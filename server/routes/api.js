@@ -32,7 +32,7 @@ router.get('/login/google',
   userController.doesUserExist, // do they already exist in db
   userController.createUser, // create a user with this information
   (req, res) => {
-  return res.redirect('http://localhost:8080/');
+  return res.redirect('http://localhost:3000/');
 });
 
 // This route isn't from a button, it automatically checks these things

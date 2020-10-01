@@ -2,16 +2,19 @@ const { google } = require("googleapis");
 
 const chromeController = {};
 
-const CHROME_CLIENT_ID = process.env.CHROME_CLIENT_ID;
-const CHROME_APP_ID = process.env.CHROME_APP_ID;
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URL = process.env.REDIRECT_URL;
 
 const oauth2Client = new google.auth.OAuth2(
-  CHROME_CLIENT_ID
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URL
 );
 
 // =================================== //
 
-oauthController.getAuthURL = (req, res, next) => {
+chromeController.getAuthURL = (req, res, next) => {
 
   // Asks permissions for these things:
   const scopes = [
@@ -33,7 +36,7 @@ oauthController.getAuthURL = (req, res, next) => {
 
 // =================================== //
 
-oauthController.getAuthCode = async (req, res, next) => {
+chromeController.getAuthCode = async (req, res, next) => {
   const { tokens } = await oauth2Client.getToken(req.query.code); // Tokens contains access_token, refresh_token, scope, id-token
   oauth2Client.setCredentials(tokens); // Verify credentials with google
   
