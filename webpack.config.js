@@ -20,6 +20,7 @@ module.exports = {
       '/images': 'http://localhost:3000',
       '/tags': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
+      '/chrome': 'http://localhost:3000',
     },
     hot: true,
   },

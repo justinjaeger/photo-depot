@@ -13,6 +13,7 @@ const userController = require("./controllers/userController")
 const imageRouter = require("./routes/images")
 const tagRouter = require("./routes/tags")
 const apiRouter = require("./routes/api")
+const chromeRouter = require("./routes/chrome")
 
 // JSON parser:
 app.use(express.json());
@@ -47,6 +48,9 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') {
   The userController.getUser middleware passes the userId 
   from the cookie into res.locals.userId
 */
+
+// CHROME ROUTER
+app.use('/chrome', chromeRouter);
 
 // IMAGES ROUTER
 app.use('/images', userController.getUser, imageRouter);

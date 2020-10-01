@@ -1,20 +1,13 @@
 const { google } = require("googleapis");
 
-/*
-  documentation that will explain everything below: https://www.npmjs.com/package/googleapis#oauth2-client
-*/
+const chromeController = {};
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URL = process.env.REDIRECT_URL;
+const CHROME_CLIENT_ID = process.env.CHROME_CLIENT_ID;
+const CHROME_APP_ID = process.env.CHROME_APP_ID;
 
 const oauth2Client = new google.auth.OAuth2(
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URL
+  CHROME_CLIENT_ID
 );
-
-const oauthController = {};
 
 // =================================== //
 
@@ -50,6 +43,7 @@ oauthController.getAuthCode = async (req, res, next) => {
   return next();
 };
 
+
 // =================================== //
 
-module.exports = oauthController;
+module.exports = chromeController;
