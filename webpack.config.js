@@ -55,7 +55,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './client/src/index.html',
-      favicon: './client/src/favicon.ico'
+      favicon: './client/src/favicon.ico',
+      // logo: './client/src/photo-depot-logo.png'
     }),
     new CleanWebpackPlugin(),
     new Dotenv(),

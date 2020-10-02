@@ -5,9 +5,15 @@
   "description": "Click and save your image urls and view your collection at Photo Depot.",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["./app.js"],
-      "css": ["./styles.scss"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "./app.js"
+      ],
+      "css": [
+        "./styles.scss"
+      ]
     }
   ],
   "icons": {
@@ -15,9 +21,9 @@
   },
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApiWVeeo/6DUjws3cqyDMYyRTLf/f6LCeUGGJtqNGiAw9FUsbRAmbnaDRlFYbZAQKthG6zltX1GG9WW9yoaecPYuPW5lxwcR6l+7H7brz322cHnqaW4LVdW20BFHs+IuK3PFAz8DeUyIRiZPXPfbWCJ6RKHG1n+2xK89Pcz8B7qloftQTE1mtHvEeEfK//fPtZPrImz8huEiwP9HTA+iaoduL+HSMvL7g7u2V+ul+fNAyC7lMBWDf/zTJ4QhZWZ/My7d9+qjgSXyGo2n0gWe0TXhfN6mQRtZiQgbtUlVWnifPKIEIoHoUCHdvHYub7UNxDy6ljq0MDjLy5gPg8fOmJwIDAQAB",
   "browser_action": {
-    "default_title": "Tool Tip: TEST default_title",      
+    "default_title": "Tool Tip: TEST default_title",
     "default_popup": "./popup.html",
-    "default_icon": {                   
+    "default_icon": {
       "16": "./images/photo-depot-16px.png",
       "48": "./images/photo-depot-48px.png",
       "128": "./images/photo-depot-128px.png"
