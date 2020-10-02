@@ -7,7 +7,7 @@ const imageController = {};
 imageController.getImages = (req, res, next) => {
 
   const userid = res.locals.userId;
-
+  console.log('In get images:', userid)
   db.query(queries.getImages, [userid])
     .then(photos => {
       db.query(queries.getAllImageTags, [userid])

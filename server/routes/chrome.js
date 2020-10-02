@@ -1,21 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const jwtDecode = require('jwt-decode');
-// const chromeController = require('../controllers/chromeController');
+const chromeController = require('../controllers/chromeController');
+const cookieController = require('../controllers/cookieController');
+const userController = require('../controllers/userController');
 
-router.get('/login/:token', 
-  // chromeController.getImages, 
+
+// Checks if user exists or if we're creating them
+router.get('/login/:token',
+  chromeController.doesUserExist, // do they already exist in db
+  userController.createUser,
   (req, res) => {
-  console.log('THIS IS FROM THE SERVER', req.params)
-  const decoded = jwtDecode(req.params.token)
-  return res.json(decoded)
-  // return res.status(200).json(res.locals.data);
+  return res.json(res.locals.userinfo)
 })
 
-router.get('/logout', 
-  // chromeController.getImages, 
+router.post('/images', 
+  chromeController.addImage,
   (req, res) => {
-  return res.status(200).json(res.locals.data);
+  return res.json(res.locals.data);
 })
 
 module.exports = router;

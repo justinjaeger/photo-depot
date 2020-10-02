@@ -16,7 +16,8 @@ userController.createUser = (req, res, next) => {
   // write new user to database
   db.query(queries.createUser, [sub, name])
     .then(data => {
-      console.log('Success creating new user: ', data)
+      console.log('Success creating new user')
+      res.locals.userinfo = [name, sub];
       return next();
     })
     .catch(err => {
@@ -56,10 +57,10 @@ userController.doesUserExist = (req, res, next) => {
       if (data.rows[0]) {
         return res.redirect('http://localhost:3000/'); // if they exist then you go right to home page
       } else {
-        return next();
+        return next(); // if they don't exist move on and create them
       }
     })
-    .catch(err => { // if they don't exist move on and create them
+    .catch(err => {
       console.log('Error seeing if user exists in userController.doesUserExist')
       return next(err);
     })

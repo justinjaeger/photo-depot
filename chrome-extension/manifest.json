@@ -10,16 +10,10 @@
       "css": ["./styles.scss"]
     }
   ],
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyW97RmtY/hkglZ+6BcWmtaJcg6AD0qqMh1OB/Tiz/1NKdmlnNagYWy85YhJQNkw9Wrsmjeduk5rh6ukCr2iuD8nszsqFI6JkY0GaT20oNXlQXwJLdFV5A18Nf2TyQDllb+elriXJXkYmGiHGogtieF0tDqhYJXc21PWpFsHbvfMwVzR0QHUfaOaJFVhkUuz+hqGVqEPVkuy//D4wiWqlEjhe5oasMKa2LzKriYAR2PrxngiVA1JrEnxf/23FXDVsaLIS8tH0NE7wsKkIBlLhOuxcX4xWalon5SMBx6eBvLJyxjsNwVSGbJcOpLOPq+oOTuOlEsjxVskz4p7Qg2ZxdQIDAQAB",
-  "oauth2": {
-    "client_id": "265226410890-17pudtqfsqae1nbii53u8nbrlvb5ej18.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/userinfo.profile"
-    ]
-  },
   "icons": {
     "128": "./images/photo-depot-128px.png"
   },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApiWVeeo/6DUjws3cqyDMYyRTLf/f6LCeUGGJtqNGiAw9FUsbRAmbnaDRlFYbZAQKthG6zltX1GG9WW9yoaecPYuPW5lxwcR6l+7H7brz322cHnqaW4LVdW20BFHs+IuK3PFAz8DeUyIRiZPXPfbWCJ6RKHG1n+2xK89Pcz8B7qloftQTE1mtHvEeEfK//fPtZPrImz8huEiwP9HTA+iaoduL+HSMvL7g7u2V+ul+fNAyC7lMBWDf/zTJ4QhZWZ/My7d9+qjgSXyGo2n0gWe0TXhfN6mQRtZiQgbtUlVWnifPKIEIoHoUCHdvHYub7UNxDy6ljq0MDjLy5gPg8fOmJwIDAQAB",
   "browser_action": {
     "default_title": "Tool Tip: TEST default_title",      
     "default_popup": "./popup.html",
@@ -31,8 +25,7 @@
   },
   "background": {
     "scripts": [
-      "eventPage.js",
-      "jwt-decode.js"
+      "eventPage.js"
     ],
     "persistent": false
   },
