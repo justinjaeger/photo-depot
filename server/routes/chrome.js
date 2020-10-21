@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const jwtDecode = require('jwt-decode');
 const chromeController = require('../controllers/chromeController');
-const cookieController = require('../controllers/cookieController');
 const userController = require('../controllers/userController');
 
 

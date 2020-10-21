@@ -25,6 +25,8 @@ function App() {
   };
   checkCookie();
 
+  console.log('hello from app.js')
+
   // LOG USER OUT
   function logOut() {
     setIsLoggedIn(false)
@@ -32,10 +34,10 @@ function App() {
     
   return (
     <div id='App'>
-      {!isLoggedIn &&
+      {/* {!isLoggedIn &&
       <Login />
       }
-      {isLoggedIn && 
+      {isLoggedIn &&  */}
       <Container fluid>
         <a href="/api/logout">
           <button onClick={logOut}>Log Out</button>
@@ -64,7 +66,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-      }
+      {/* } */}
     </div>
   );
 }

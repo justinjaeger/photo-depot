@@ -4,9 +4,3 @@ document.querySelector('#log-out').addEventListener('click', () => {
     if (response === 'success') window.close()
   })
 })
-
-document.querySelector('#is-user-signed-in').addEventListener('click', () => {
-  chrome.runtime.sendMessage({message: 'isUserSignedIn'}, (response) => {
-    console.log('is user signed in')
-  })
-})

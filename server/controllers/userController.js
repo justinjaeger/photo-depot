@@ -50,6 +50,8 @@ userController.isCookieValidUser = (req, res, next) => {
 
 userController.doesUserExist = (req, res, next) => {
 
+  console.log('checking if user exists')
+
   const { sub } = jwtDecode(res.locals.token);
 
   db.query(queries.getUserByUserid, [sub])
@@ -70,11 +72,13 @@ userController.doesUserExist = (req, res, next) => {
 
 userController.getUser = (req, res, next) => {
 
+  console.log('getting user')
+
   const { sub } = jwtDecode(req.cookies.sessionid);
 
   db.query(queries.getUserByUserid, [sub])
     .then(data => {
-      console.log('LOGGING THE USER if they exist', data.rows[0])
+      console.log('returned user:', data.rows[0])
       res.locals.userId = data.rows[0].userid; // save the userId in data
       return next(); // keep going
     })

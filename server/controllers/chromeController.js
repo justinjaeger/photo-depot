@@ -13,7 +13,7 @@ chromeController.doesUserExist = (req, res, next) => {
   db.query(queries.getUserByUserid, [sub])
     .then(data => {
       if (data.rows[0]) {
-        console.log('User does exist already:', data.rows[0])
+        console.log('Here is the user data:', data.rows[0])
         return res.json([name, sub]); // if they exist then send back the name
       } else {
         res.locals.token = req.params.token; // important for next middleware
@@ -29,8 +29,6 @@ chromeController.doesUserExist = (req, res, next) => {
 // =================================== //
 
 chromeController.addImage = (req, res, next) => {
-
-  console.log('REQ BODY', req.body)
 
   const { imageUrl, userId } = req.body;
 

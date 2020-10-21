@@ -39,9 +39,7 @@ imageController.getImages = (req, res, next) => {
 imageController.addImage = (req, res, next) => {
 
   //deconstruct url from body
-  const {
-    url
-  } = req.body;
+  const { url } = req.body;
 
   const userid = res.locals.userId;
 
@@ -49,7 +47,7 @@ imageController.addImage = (req, res, next) => {
   const now = new Date();
   const date = `${now.toDateString()}-${now.toTimeString().split(' ')[0]}`;
 
-  //default rating of 0
+  // default rating of 0
   const rating = 0;
 
   db.query(queries.addImage, [url, userid, date, rating])

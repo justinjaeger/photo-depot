@@ -38,7 +38,7 @@ module.exports = (server, clients, users) => {
         };
         if (dataFromClient.type === typesDef.GET_IMAGES) {
           //hard-code userid until sessions set up
-          const userid = 1;
+          const userid = 1; // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
           db.query(queries.getImages, [userid])
             .then(photos => {

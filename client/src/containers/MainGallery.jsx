@@ -9,7 +9,6 @@ import {
 //initialize websocket connection
 const client = new W3CWebSocket('ws://localhost:3000');
 
-
 const mapStateToProps = state => ({
   photos: state.photos.photos,
   filteredPhotos: state.photos.filteredPhotos,
@@ -21,12 +20,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const MainGallery = (props) => {
+  console.log('inside Main Gallery')
+
   useEffect(() => {
-    //websockets
+    // websockets
     client.onopen = () => {
+      // Looks like this is sending to get images in weserver.js
       client.send(JSON.stringify({
         type: "getimages"
       }))
+      // This is not showing
       console.log('WebSocket Client Connected');
     }
     client.onmessage = (message) => {
